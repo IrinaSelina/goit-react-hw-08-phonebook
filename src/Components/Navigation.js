@@ -1,0 +1,56 @@
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+const styles = {
+  link: {
+    display: "inline-block",
+    textDecoration: "none",
+    padding: 12,
+    fontWeight: 700,
+    color: "#2A363B",
+  },
+  activeLink: {
+    color: "#E84A5F",
+  },
+};
+
+const Navigation = () => (
+  <nav>
+    <NavLink
+      to="/"
+      exact
+      exact
+      style={styles.link}
+      activeStyle={styles.activeLink}
+    >
+      Главная
+    </NavLink>
+
+    <NavLink
+      to="/register"
+      exact
+      style={styles.link}
+      activeStyle={styles.activeLink}
+    >
+      Регистрация
+    </NavLink>
+    <NavLink
+      to="/login"
+      exact
+      style={styles.link}
+      activeStyle={styles.activeLink}
+    >
+      Логинизация
+    </NavLink>
+    <NavLink
+      to="/contacts"
+      exact
+      style={styles.link}
+      activeStyle={styles.activeLink}
+    >
+      Контакты пользователя
+    </NavLink>
+  </nav>
+);
+
+export default Navigation;
