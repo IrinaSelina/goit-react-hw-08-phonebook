@@ -3,6 +3,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import {
   persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -11,7 +12,8 @@ import {
   REGISTER,
 } from "redux-persist";
 import formReducer from "./form/form-reducer";
-// import storage from "redux-persist/lib/storage";
+import authReducer from "./auth/auth-reducer";
+import storage from "redux-persist/lib/storage";
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -23,14 +25,15 @@ const middleware = [
 ];
 
 // const store = createStore(rootReducer, composeWithDevTools());
-// const persistConfig = {
-//   key: "items",
-//   storage,
-//   blacklist: ["filter"],
-// };
-
+const authPersistConfig = {
+  key: "auth",
+  storage,
+  whitelist: ["token"],
+};
 const roodReducer = combineReducers({
+  auth: persistReducer(authPersistConfig, authReducer),
   contacts: formReducer,
+
   // contacts: persistReducer(persistConfig, formReducer),
 });
 // const persistedReducer = persistReducer(persistConfig, roodReducer);

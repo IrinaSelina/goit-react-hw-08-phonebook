@@ -1,35 +1,55 @@
-import React from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
-import HomeView from "./views/HomeView.js";
-import LoginView from "./views/LoginView.js";
-import RegisterView from "./views/RegisterView.js";
-import ContactsView from "./views/ContactsView.js";
-import { Component } from "react";
+
 import { connect } from "react-redux";
 import formActions from "./redux/form/form-actions";
 import Section from "./Components/Section";
 import Form from "./Components/Form";
 import ContactList from "./Components/ContactList";
 import Filter from "./Components/Filter";
-import formOperations from "./redux/form/form-operations";
+import authOperations from "./redux/auth/auth-operations";
 import Routs from "./routes";
+import PrivateRoute from "./Components/PrivateRoute";
+import PublicRoute from "./Components/PublicRoute";
+
 import AppBar from "./Components/AppBar";
+
+const HomeView = lazy(() => import("./views/HomeView.js"));
+const LoginView = lazy(() => import("./views/LoginView.js"));
+const ContactsView = lazy(() => import("./views/ContactsView.js"));
+const RegisterView = lazy(() => import("./views/RegisterView.js"));
+
 class App extends Component {
+  componentDidMount() {
+    this.props.onGetCurrentUser();
+  }
   render() {
     return (
       <>
         <AppBar />
-        <Switch>
-          {/* <Route component={HomeView} />
-          <Route component={LoginView} />
-          <Route component={RegisterView} /> */}
-
-          <Route exact path={Routs.home} component={HomeView} />
-          <Route path={Routs.register} component={RegisterView} />
-          <Route path={Routs.login} component={LoginView} />
-          <Route path={Routs.contacts} component={ContactsView} />
-          <Route component={HomeView} />
-        </Switch>
+        <Suspense fallback={<p>Загружаем...</p>}>
+          <Switch>
+            <PublicRoute exact path={Routs.home} component={HomeView} />
+            <PublicRoute
+              path={Routs.register}
+              component={RegisterView}
+              redirectTo={Routs.contacts}
+              restricted
+            />
+            <PublicRoute
+              path={Routs.login}
+              component={LoginView}
+              redirectTo={Routs.contacts}
+              restricted
+            />
+            <PrivateRoute
+              path={Routs.contacts}
+              component={ContactsView}
+              redirectTo={Routs.login}
+            />
+            <Route component={HomeView} />
+          </Switch>
+        </Suspense>
       </>
     );
   }
@@ -60,5 +80,7 @@ class App extends Component {
 //   fetchContacts: () => dispatch(formOperations.fetchContacts()),
 // });
 
-// export default connect(null, mapDispatchToProps)(App);
-export default App;
+const mapDispatchToProps = {
+  onGetCurrentUser: authOperations.getCurrentUser,
+};
+export default connect(null, mapDispatchToProps)(App);
