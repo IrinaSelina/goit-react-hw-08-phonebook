@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { findRenderedDOMComponentWithTag } from "react-dom/cjs/react-dom-test-utils.production.min";
 import { connect } from "react-redux";
 import formOperations from "../redux/form/form-operations";
 import formActions from "../redux/form/form-actions";
-import authSelectors from "../redux/auth/auth-selectors";
+
 import Section from "../Components/Section";
 import Form from "../Components/Form";
 import ContactList from "../Components/ContactList";
@@ -12,16 +11,7 @@ class ContactsView extends Component {
   componentDidMount() {
     this.props.fetchContacts();
   }
-  // componentDidUpdate(isAuthenticated) {
-  //   console.log("componentDidUpdate");
-  //   this.props.fetchContacts();
-  // }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  //   }
-  // }
   render() {
     return (
       <Section>

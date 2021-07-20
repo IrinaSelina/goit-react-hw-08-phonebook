@@ -1,12 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
-import { Route, NavLink, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { connect } from "react-redux";
-import formActions from "./redux/form/form-actions";
-import Section from "./Components/Section";
-import Form from "./Components/Form";
-import ContactList from "./Components/ContactList";
-import Filter from "./Components/Filter";
 import authOperations from "./redux/auth/auth-operations";
 import Routs from "./routes";
 import PrivateRoute from "./Components/PrivateRoute";

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import selectors from "../../redux/auth/auth-selectors";
 import operations from "../../redux/auth/auth-operations";
 
@@ -32,5 +33,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   logOut: operations.logOut,
 };
-
+UserMenu.propTypes = {
+  email: PropTypes.string.isRequired,
+  logOut: PropTypes.func.isRequired,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
