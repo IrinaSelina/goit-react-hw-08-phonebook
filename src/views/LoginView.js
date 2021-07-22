@@ -37,12 +37,10 @@ class LoginView extends Component {
               <InputLabel htmlFor="email">
                 Почта
                 <Input
-                  id="email"
                   label="Enter your email"
                   type="email"
                   name="email"
                   value={email}
-                  placeholder="Enter your email"
                   onChange={this.handleChange}
                 />
               </InputLabel>
@@ -55,7 +53,6 @@ class LoginView extends Component {
                   type="password"
                   name="password"
                   value={password}
-                  placeholder="Enter your password"
                   onChange={this.handleChange}
                 />
               </InputLabel>
