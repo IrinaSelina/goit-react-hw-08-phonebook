@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import operations from "../redux/auth/auth-operations";
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: "flex",
-    flexDirection: "column",
-    marginBottom: 15,
-  },
-};
-
+import FormGroup from "@material-ui/core/FormGroup";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import Section from "../Components/Section";
 class LoginView extends Component {
   state = {
     email: "",
@@ -37,39 +30,50 @@ class LoginView extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div>
-        <h1>Страница логина</h1>
+      <Section>
+        <div className="container">
+          <form autoComplete="off" onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <InputLabel htmlFor="email">
+                Почта
+                <Input
+                  id="email"
+                  label="Enter your email"
+                  type="email"
+                  name="email"
+                  value={email}
+                  placeholder="Enter your email"
+                  onChange={this.handleChange}
+                />
+              </InputLabel>
 
-        <form
-          style={styles.form}
-          autoComplete="off"
-          onSubmit={this.handleSubmit}
-        >
-          <label style={styles.label}>
-            Почта
-            <input
-              type="email"
-              name="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={this.handleChange}
-            />
-          </label>
+              <InputLabel htmlFor="password">
+                Пароль
+                <Input
+                  id="password"
+                  label="Enter your password"
+                  type="password"
+                  name="password"
+                  value={password}
+                  placeholder="Enter your password"
+                  onChange={this.handleChange}
+                />
+              </InputLabel>
+            </FormGroup>
 
-          <label style={styles.label}>
-            Пароль
-            <input
-              type="password"
-              name="password"
-              value={password}
-              placeholder="Enter your password"
-              onChange={this.handleChange}
-            />
-          </label>
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+              size="small"
+            >
+              Войти
+            </Button>
 
-          <button type="submit">Войти</button>
-        </form>
-      </div>
+            {/* <button type="submit">Войти</button> */}
+          </form>
+        </div>
+      </Section>
     );
   }
 }

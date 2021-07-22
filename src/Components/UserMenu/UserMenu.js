@@ -3,27 +3,15 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import selectors from "../../redux/auth/auth-selectors";
 import operations from "../../redux/auth/auth-operations";
-
-const styles = {
-  container: {
-    display: "flex",
-    alignItems: "center",
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-};
+import Button from "@material-ui/core/Button";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const UserMenu = ({ email, logOut }) => (
-  <div style={styles.container}>
-    <span style={styles.name}>Welcome, {email}</span>
-    <button onClick={logOut} type="button">
-      Выйти
-    </button>
+  <div>
+    <span>Welcome, {email}</span>
+    <Button onClick={logOut} type="button">
+      <ExitToAppIcon />
+    </Button>
   </div>
 );
 const mapStateToProps = (state) => ({

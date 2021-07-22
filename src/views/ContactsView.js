@@ -7,6 +7,8 @@ import Section from "../Components/Section";
 import Form from "../Components/Form";
 import ContactList from "../Components/ContactList";
 import Filter from "../Components/Filter";
+import Container from "@material-ui/core/Container";
+
 class ContactsView extends Component {
   componentDidMount() {
     this.props.fetchContacts();
@@ -14,13 +16,20 @@ class ContactsView extends Component {
 
   render() {
     return (
-      <Section>
-        <h1>Phonebook</h1>
-        <Form />
-        <h2>Contacts</h2>
-        <Filter />
-        <ContactList />
-      </Section>
+      <Container>
+        <Section>
+          <div className="container">
+            <h1>Phonebook</h1>
+            <Form />
+          </div>
+          <div className="container">
+            <h2>Contacts</h2>
+            <Filter />
+          </div>
+
+          <ContactList />
+        </Section>
+      </Container>
     );
   }
 }

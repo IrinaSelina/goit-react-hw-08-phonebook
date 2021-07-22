@@ -7,7 +7,7 @@ import Routs from "./routes";
 import PrivateRoute from "./Components/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute";
 
-import AppBar from "./Components/AppBar";
+import NavBar from "./Components/NavBar";
 
 const HomeView = lazy(() => import("./views/HomeView.js"));
 const LoginView = lazy(() => import("./views/LoginView.js"));
@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <AppBar />
+        <NavBar />
         <Suspense fallback={<p>Загружаем...</p>}>
           <Switch>
             <PublicRoute exact path={Routs.home} component={HomeView} />

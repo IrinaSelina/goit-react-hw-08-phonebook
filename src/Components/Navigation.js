@@ -12,23 +12,15 @@ const styles = {
     fontWeight: 700,
     color: "#2A363B",
   },
-  activeLink: {
-    color: "#E84A5F",
-  },
 };
 
 const Navigation = ({ isAuthenticated }) => (
   <nav>
-    <NavLink to="/" exact style={styles.link} activeStyle={styles.activeLink}>
+    <NavLink to="/" exact className="link">
       Главная
     </NavLink>
     {isAuthenticated && (
-      <NavLink
-        to="/contacts"
-        exact
-        style={styles.link}
-        activeStyle={styles.activeLink}
-      >
+      <NavLink to="/contacts" exact className="link">
         Контакты пользователя
       </NavLink>
     )}
